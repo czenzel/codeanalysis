@@ -16,8 +16,8 @@ queries without sanitization.
 - **Locations:**
   - `tests/mysql/data/mysql-server-tests-queries.csv`
   - Various instances in:
-- `wp-includes/sqlite/class-wp-sqlite-translator.php`
-- `wp-includes/mysql/class-wp-mysql-lexer.php`
+    - `wp-includes/sqlite/class-wp-sqlite-translator.php`
+    - `wp-includes/mysql/class-wp-mysql-lexer.php`
 - **Impact:** Allows attackers to modify or delete data in the database.
 
 ### 2. Insecure Data Storage
