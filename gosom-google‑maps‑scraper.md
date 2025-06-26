@@ -1,6 +1,7 @@
 # gosom/google‑maps‑scraper
 
 Repository: https://github.com/gosom/google‑maps‑scraper
+Generated: 2025/06/26
 
 ## 1. Arbitrary file-write via **create\_new\_category**
 
