@@ -29,8 +29,6 @@ Repository: https://github.com/gosom/google‑maps‑scraper
 
   and the app will happily overwrite or create `/tmp/hacked.txt`, as long as it has permissions.
 
----
-
 ## 2. Arbitrary file-write via **create\_new\_location**
 
 **Location in source**: lines **806–813**
@@ -50,8 +48,6 @@ Repository: https://github.com/gosom/google‑maps‑scraper
 
 * Same pattern: an attacker can set `location_name` to an absolute path (e.g. `/etc/cron.d/evil`), causing the scraper to write to `/etc/cron.d/evil.txt`.
 
----
-
 ## 3. Server-Side Request Forgery (SSRF) via **execute\_jobs**
 
 **Location in source**: lines **505–506**
@@ -68,8 +64,6 @@ Repository: https://github.com/gosom/google‑maps‑scraper
 
 * The “Host” field is entirely user-controlled.
 * You can point it at internal-only services (e.g. AWS metadata at `http://169.254.169.254`) and the scraper will blindly send POST/GET there, potentially leaking sensitive data.
-
----
 
 ### How to perform the file-write exploit
 
@@ -98,8 +92,6 @@ Repository: https://github.com/gosom/google‑maps‑scraper
      ```
    * You’ve just planted `zoom\nlat\nlon` into `/etc/cron.d/evil.txt`.
 
----
-
 ### How to perform the SSRF exploit
 
 1. **In the “Configuración” tab**, change **Host** from `http://localhost:8080` to:
@@ -110,8 +102,6 @@ Repository: https://github.com/gosom/google‑maps‑scraper
 2. **Select at least one** category and location (you can even create dummy ones as above).
 3. **Click “Run”**.
 4. The scraper will `POST http://169.254.169.254/latest/meta-data/api/v1/jobs` and then `GET http://169.254.169.254/latest/meta-data/api/v1/jobs/<id>`—potentially exposing whatever that metadata endpoint returns.
-
----
 
 ## Recommendations
 
